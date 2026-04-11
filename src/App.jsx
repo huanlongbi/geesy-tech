@@ -509,7 +509,7 @@ export default function GeesyTechWebsite() {
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg sm:col-span-2">
               <img
-                src="https://images.unsplash.com/photo-1581092921461-eab10380bdc0?auto=format&fit=crop&w=1400&q=80"
+                src="/images/homepage/hero.jpg"
                 alt="Laboratory overview"
                 className="h-72 w-full object-cover"
               />
