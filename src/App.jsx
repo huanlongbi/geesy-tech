@@ -587,7 +587,7 @@ function LinkonTechWebsiteInner() {
           </div>
         </section>
 
-        </div>
+      </div>
     </div>
   );
 
@@ -618,7 +618,7 @@ function LinkonTechWebsiteInner() {
           </div>
         </section>
 
-        </div>
+      </div>
     </div>
   );
 
@@ -633,7 +633,22 @@ function LinkonTechWebsiteInner() {
           </div>
         </div>
       </section>
+      <section className="border-b border-slate-200 bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+          <SectionTitle
+            title="Our Laboratory"
+            desc="Our EMC testing and engineering work is supported by real laboratory resources and experienced technical teams."
+          />
 
+          <div className="mt-10 overflow-hidden rounded-3xl border border-slate-200 shadow-sm">
+            <img
+              src="/images/about/company.jpg"
+              alt="Topband Central Lab Entrance"
+              className="h-[420px] w-full object-cover"
+            />
+          </div>
+        </div>
+      </section>
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <SectionTitle title="Core Strengths" desc="About is now a single complete page so visitors can understand your support model more clearly in one place." />
@@ -648,6 +663,39 @@ function LinkonTechWebsiteInner() {
         </div>
       </section>
 
+      <section className="border-b border-slate-200 bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+          <SectionTitle
+            title="Development & Laboratory Milestones"
+            desc="Our laboratory capabilities and qualifications have been continuously developed over the years."
+          />
+
+          <div className="mt-12 overflow-hidden rounded-3xl border border-slate-200 shadow-sm">
+            <img
+              src="/images/about/development.jpg"
+              alt="Laboratory development timeline"
+              className="w-full object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+          <SectionTitle
+            title="Standards & Technical Capability"
+            desc="We support engineering validation and testing based on a wide range of international and industry standards."
+          />
+
+          <div className="mt-12 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <img
+              src="/images/about/reference-standard.jpg"
+              alt="Reference Standards"
+              className="w-full object-cover"
+            />
+          </div>
+        </div>
+      </section>
       <ContactSection />
     </>
   );
