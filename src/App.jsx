@@ -1,12 +1,21 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
-export default function GeesyTechWebsite() {
-  const [page, setPage] = useState("home");
+function LinkonTechWebsiteInner() {
   const [openMenu, setOpenMenu] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
   const closeTimerRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const clearCloseTimer = () => {
     if (closeTimerRef.current) {
@@ -28,21 +37,22 @@ export default function GeesyTechWebsite() {
   };
 
   useEffect(() => {
-    return () => clearCloseTimer();
-  }, []);
-
-  const goToPage = (target) => {
-    clearCloseTimer();
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setOpenMenu(null);
     setMobileMenuOpen(false);
     setMobileServicesOpen(false);
     setMobileIndustriesOpen(false);
-    setPage(target);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }, [location.pathname]);
+
+  useEffect(() => {
+    return () => clearCloseTimer();
+  }, []);
+
+  const goTo = (path) => navigate(path);
 
   const servicePages = {
     emcTroubleshooting: {
+      path: "/services/emc-troubleshooting",
       heroTag: "Service / EMC Troubleshooting",
       title: "EMC Troubleshooting",
       subtitle:
@@ -67,21 +77,25 @@ export default function GeesyTechWebsite() {
         {
           title: "Analysis Methods",
           desc: "Replace with X-ray inspection, microsection analysis, and electrical verification photos.",
-          image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+          image:
+            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
         },
         {
           title: "Engineering Bench",
           desc: "Use your real EMI debugging bench or failure analysis lab photos.",
-          image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
+          image:
+            "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
         },
         {
           title: "Verification Support",
           desc: "Display images that show how rectification suggestions are verified efficiently.",
-          image: "https://images.unsplash.com/photo-1581092921461-eab10380bdc0?auto=format&fit=crop&w=1200&q=80",
+          image:
+            "https://images.unsplash.com/photo-1581092921461-eab10380bdc0?auto=format&fit=crop&w=1200&q=80",
         },
       ],
     },
     emcTesting: {
+      path: "/services/emc-testing",
       heroTag: "Service / EMC Testing",
       title: "EMC Testing",
       subtitle:
@@ -106,21 +120,25 @@ export default function GeesyTechWebsite() {
         {
           title: "EMC Chamber",
           desc: "Replace with your semi-anechoic room, shielded room, or EMC chamber photos.",
-          image: "https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=1200&q=80",
+          image:
+            "https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=1200&q=80",
         },
         {
           title: "Test Setup",
           desc: "Use test bench, receiver, LISN, or chamber setup photos to enhance trust.",
-          image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=1200&q=80",
+          image:
+            "https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=1200&q=80",
         },
         {
           title: "Verification Equipment",
           desc: "Show the equipment that supports fast validation during EMC projects.",
-          image: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=1200&q=80",
+          image:
+            "https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=1200&q=80",
         },
       ],
     },
     complianceSupport: {
+      path: "/services/compliance-support",
       heroTag: "Service / Compliance Support",
       title: "Compliance Support",
       subtitle:
@@ -145,17 +163,20 @@ export default function GeesyTechWebsite() {
         {
           title: "Safety & Compliance Resources",
           desc: "Use your safety laboratory photos and equipment images here.",
-          image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80",
+          image:
+            "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80",
         },
         {
           title: "Reliability Verification",
           desc: "Display reliability chambers and supporting lab resources for product validation.",
-          image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
+          image:
+            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
         },
         {
           title: "Integrated Support",
           desc: "Show photos that demonstrate testing, troubleshooting, and compliance support working together.",
-          image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=80",
+          image:
+            "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=80",
         },
       ],
     },
@@ -163,6 +184,7 @@ export default function GeesyTechWebsite() {
 
   const industryPages = {
     homeAppliances: {
+      path: "/industries/home-appliances",
       heroTag: "Industry / Home Appliances",
       title: "Home Appliances",
       intro:
@@ -175,6 +197,7 @@ export default function GeesyTechWebsite() {
       ],
     },
     powerTools: {
+      path: "/industries/power-tools",
       heroTag: "Industry / Power Tools",
       title: "Power Tools",
       intro:
@@ -187,6 +210,7 @@ export default function GeesyTechWebsite() {
       ],
     },
     powerSupplySystems: {
+      path: "/industries/power-supply-systems",
       heroTag: "Industry / Power Supply Systems",
       title: "Power Supply Systems",
       intro:
@@ -199,6 +223,7 @@ export default function GeesyTechWebsite() {
       ],
     },
     automotive: {
+      path: "/industries/automotive",
       heroTag: "Industry / Automotive",
       title: "Automotive",
       intro:
@@ -213,10 +238,10 @@ export default function GeesyTechWebsite() {
   };
 
   const aboutPage = {
-    heroTag: "About Geesy Tech",
+    heroTag: "About Linkon Tech",
     title: "Engineering-Driven EMC Support",
     intro:
-      "Geesy Tech focuses on EMC troubleshooting, testing support, and compliance-oriented engineering assistance. We help customers solve real EMC problems efficiently through experienced engineers, laboratory-backed verification, and fast execution.",
+      "Linkon Tech focuses on EMC troubleshooting, testing support, and compliance-oriented engineering assistance. We help customers solve real EMC problems efficiently through experienced engineers, laboratory-backed verification, and fast execution.",
     sections: [
       {
         title: "Experienced EMC Engineers",
@@ -238,34 +263,22 @@ export default function GeesyTechWebsite() {
   };
 
   const serviceMenuItems = [
-    { key: "emcTroubleshooting", title: "EMC Troubleshooting", desc: "Engineering-focused rectification support." },
-    { key: "emcTesting", title: "EMC Testing", desc: "Pre-compliance and validation testing." },
-    { key: "complianceSupport", title: "Compliance Support", desc: "Technical support for compliance readiness." },
+    { key: "emcTroubleshooting", title: "EMC Troubleshooting", path: servicePages.emcTroubleshooting.path },
+    { key: "emcTesting", title: "EMC Testing", path: servicePages.emcTesting.path },
+    { key: "complianceSupport", title: "Compliance Support", path: servicePages.complianceSupport.path },
   ];
 
   const industryMenuItems = [
-    { key: "homeAppliances", title: "Home Appliances", desc: "EMC experience in appliance-related products." },
-    { key: "powerTools", title: "Power Tools", desc: "Support for motor-driven tool products." },
-    { key: "powerSupplySystems", title: "Power Supply Systems", desc: "Particular strength in industrial power applications." },
-    { key: "automotive", title: "Automotive", desc: "Support for automotive and vehicle-related electronics." },
+    { key: "homeAppliances", title: "Home Appliances", path: industryPages.homeAppliances.path },
+    { key: "powerTools", title: "Power Tools", path: industryPages.powerTools.path },
+    { key: "powerSupplySystems", title: "Power Supply Systems", path: industryPages.powerSupplySystems.path },
+    { key: "automotive", title: "Automotive", path: industryPages.automotive.path },
   ];
 
   const strengths = [
-    {
-      key: "about",
-      title: "Experienced EMC Engineers",
-      desc: "We focus on practical rectification support, not just pass/fail reporting.",
-    },
-    {
-      key: "about",
-      title: "Laboratory Resource Support",
-      desc: "Testing and verification resources help confirm improvement effectiveness quickly.",
-    },
-    {
-      key: "about",
-      title: "Fast Turnaround",
-      desc: "Efficient execution helps customers shorten delays and accelerate product launch timing.",
-    },
+    { path: "/about", title: "Experienced EMC Engineers", desc: "We focus on practical rectification support, not just pass/fail reporting." },
+    { path: "/about", title: "Laboratory Resource Support", desc: "Testing and verification resources help confirm improvement effectiveness quickly." },
+    { path: "/about", title: "Fast Turnaround", desc: "Efficient execution helps customers shorten delays and accelerate product launch timing." },
   ];
 
   const faqs = [
@@ -283,11 +296,6 @@ export default function GeesyTechWebsite() {
     },
   ];
 
-  const currentService = useMemo(() => servicePages[page], [page]);
-  const currentIndustry = useMemo(() => industryPages[page], [page]);
-  const showAbout = page === "about";
-  const showContact = page === "contact";
-
   const SectionTitle = ({ eyebrow, title, desc }) => (
     <div className="max-w-3xl">
       <div className="mb-3 h-1 w-16 rounded-full bg-blue-900" />
@@ -298,11 +306,7 @@ export default function GeesyTechWebsite() {
   );
 
   const DropdownMenu = ({ label, menuKey, items }) => (
-    <div
-      className="relative"
-      onMouseEnter={() => openDropdown(menuKey)}
-      onMouseLeave={scheduleCloseDropdown}
-    >
+    <div className="relative" onMouseEnter={() => openDropdown(menuKey)} onMouseLeave={scheduleCloseDropdown}>
       <button
         type="button"
         onClick={() => setOpenMenu((prev) => (prev === menuKey ? null : menuKey))}
@@ -321,11 +325,10 @@ export default function GeesyTechWebsite() {
             <button
               key={item.key}
               type="button"
-              onClick={() => goToPage(item.key)}
+              onClick={() => goTo(item.path)}
               className="block w-full rounded-xl px-4 py-3 text-left transition hover:bg-slate-50"
             >
               <div className="text-sm font-semibold text-slate-900">{item.title}</div>
-              <div className="mt-1 text-xs leading-5 text-slate-500">{item.desc}</div>
             </button>
           ))}
         </div>
@@ -338,32 +341,20 @@ export default function GeesyTechWebsite() {
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[1fr_1.1fr] lg:px-8">
         <div>
           <div className="mb-3 h-1 w-16 rounded-full bg-amber-400" />
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{standalone ? "Contact Us" : "Contact Geesy Tech"}</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{standalone ? "Contact Us" : "Contact Linkon Tech"}</h2>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-100">
             If you are facing EMC issues, repeated failures, or project schedule pressure, contact us to discuss your project with our engineers.
           </p>
           <div className="mt-8 space-y-4 text-sm text-blue-100">
-            <div><span className="font-semibold text-white">Company:</span> Geesy Tech</div>
-            <div><span className="font-semibold text-white">Email:</span> your@email.com</div>
-            <div><span className="font-semibold text-white">WhatsApp:</span> +00 0000 000000</div>
-            <div><span className="font-semibold text-white">WeChat:</span> your_wechat</div>
-            <div><span className="font-semibold text-white">Address:</span> Your company address here</div>
+            <div><span className="text-2xl font-bold text-white mt-4 tracking-wide">Linkon Technology Co., Ltd.</span></div>
+            <div><span className="font-semibold text-white">Email:</span> Robin@linkontech.net</div>
+            <div><span className="font-semibold text-white">Address:</span> Tangtou Avenue, Shiyan Town, Bao’an District, Shenzhen, Guangdong, China</div>
           </div>
         </div>
 
         <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-          <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-            action="/"
-            className="space-y-5"
-          >
-            {/* 🔥 必须：Netlify识别 */}
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/" className="space-y-5">
             <input type="hidden" name="form-name" value="contact" />
-
-            {/* 🔥 防垃圾 */}
             <p className="hidden">
               <label>
                 Don’t fill this out if you’re human:
@@ -374,97 +365,37 @@ export default function GeesyTechWebsite() {
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label className="mb-2 block text-sm font-medium text-white">Name *</label>
-                <input
-                  name="name"
-                  type="text"
-                  required
-                  minLength={2}
-                  maxLength={60}
-                  autoComplete="name"
-                  className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-blue-200 outline-none"
-                  placeholder="Your name"
-                />
+                <input name="name" type="text" required minLength={2} maxLength={60} autoComplete="name" className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-blue-200 outline-none" placeholder="Your name" />
               </div>
-
               <div>
                 <label className="mb-2 block text-sm font-medium text-white">Company</label>
-                <input
-                  name="company"
-                  type="text"
-                  maxLength={100}
-                  autoComplete="organization"
-                  className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-blue-200 outline-none"
-                  placeholder="Company name"
-                />
+                <input name="company" type="text" maxLength={100} autoComplete="organization" className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-blue-200 outline-none" placeholder="Company name" />
               </div>
-
               <div>
                 <label className="mb-2 block text-sm font-medium text-white">Business Email *</label>
-                <input
-                  name="email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-blue-200 outline-none"
-                  placeholder="name@company.com"
-                />
+                <input name="email" type="email" required autoComplete="email" className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-blue-200 outline-none" placeholder="name@company.com" />
               </div>
-
               <div>
                 <label className="mb-2 block text-sm font-medium text-white">Service Needed *</label>
-                <select
-                  name="service"
-                  required
-                  defaultValue=""
-                  className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white outline-none"
-                >
-                  <option value="" disabled className="text-slate-900">
-                    Select a service
-                  </option>
-                  <option value="EMC Troubleshooting" className="text-slate-900">
-                    EMC Troubleshooting
-                  </option>
-                  <option value="EMC Testing" className="text-slate-900">
-                    EMC Testing
-                  </option>
-                  <option value="Compliance Support" className="text-slate-900">
-                    Compliance Support
-                  </option>
+                <select name="service" required defaultValue="" className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white outline-none">
+                  <option value="" disabled className="text-slate-900">Select a service</option>
+                  <option value="EMC Troubleshooting" className="text-slate-900">EMC Troubleshooting</option>
+                  <option value="EMC Testing" className="text-slate-900">EMC Testing</option>
+                  <option value="Compliance Support" className="text-slate-900">Compliance Support</option>
                 </select>
               </div>
-
               <div className="sm:col-span-2">
                 <label className="mb-2 block text-sm font-medium text-white">Project Details *</label>
-                <textarea
-                  name="message"
-                  rows={6}
-                  required
-                  minLength={20}
-                  maxLength={2000}
-                  className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-blue-200 outline-none"
-                  placeholder="Tell us your product type, current EMC issue, current test stage, and the support you need."
-                />
+                <textarea name="message" rows={6} required minLength={20} maxLength={2000} className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white placeholder:text-blue-200 outline-none" placeholder="Tell us your product type, current EMC issue, current test stage, and the support you need." />
               </div>
             </div>
 
-            {/* 🔥 关键：checkbox 也必须在隐藏表单中存在 */}
             <label className="flex items-start gap-3 text-sm leading-6 text-blue-100">
-              <input
-                name="consent"
-                type="checkbox"
-                value="yes"
-                required
-                className="mt-1 h-4 w-4 rounded border-white/20 bg-white/10"
-              />
-              <span>
-                I confirm this is a real business inquiry and agree that Geesy Tech may contact me regarding this project. *
-              </span>
+              <input name="consent" type="checkbox" value="yes" required className="mt-1 h-4 w-4 rounded border-white/20 bg-white/10" />
+              <span>I confirm this is a real business inquiry and agree that Linkon Tech may contact me regarding this project. *</span>
             </label>
 
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-blue-950 shadow-sm transition hover:-translate-y-0.5"
-            >
+            <button type="submit" className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-blue-950 shadow-sm transition hover:-translate-y-0.5">
               Send Inquiry
             </button>
           </form>
@@ -473,7 +404,29 @@ export default function GeesyTechWebsite() {
     </section>
   );
 
-  const renderHome = () => (
+  const SideNav = ({ title, items }) => (
+    <aside className="lg:w-64 shrink-0">
+      <div className="sticky top-24 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="mb-4 text-sm font-semibold uppercase tracking-[0.15em] text-slate-500">{title}</div>
+        <div className="space-y-2">
+          {items.map((item) => {
+            const active = location.pathname === item.path;
+            return (
+              <Link
+                key={item.key}
+                to={item.path}
+                className={`block rounded-xl px-4 py-3 text-sm font-medium transition ${active ? "bg-blue-900 text-white" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"}`}
+              >
+                {item.title}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </aside>
+  );
+
+  const HomePage = () => (
     <>
       <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(30,58,138,0.08),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(199,154,43,0.10),transparent_28%)]" />
@@ -486,60 +439,32 @@ export default function GeesyTechWebsite() {
               EMC Troubleshooting & Testing Solutions for Fast Compliance
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-              Geesy Tech helps customers solve EMC problems faster through experienced engineering support, laboratory-backed verification, and efficient execution. Our focus is practical rectification, not empty sales language.
+              Linkon Tech helps customers solve EMC problems faster through experienced engineering support, laboratory-backed verification, and efficient execution. Our focus is practical rectification, not empty sales language.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <button
-                type="button"
-                onClick={() => goToPage("emcTroubleshooting")}
-                className="inline-flex items-center justify-center rounded-md bg-blue-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5"
-              >
+              <button type="button" onClick={() => goTo("/services/emc-troubleshooting")} className="inline-flex items-center justify-center rounded-md bg-blue-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5">
                 Explore EMC Troubleshooting
-              </button>
-              <button
-                type="button"
-                onClick={() => goToPage("powerSupplySystems")}
-                className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-              >
-                View Industry Focus
               </button>
             </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg sm:col-span-2">
-              <img
-                src="/images/homepage/hero.jpg"
-                alt="Laboratory overview"
-                className="h-72 w-full object-cover"
-              />
+              <img src="/images/homepage/hero.jpg" alt="Laboratory overview" className="h-72 w-full object-cover" />
               <div className="p-5">
                 <div className="text-lg font-semibold text-slate-900">Engineering Support Backed by Laboratory Resources</div>
-                <p className="mt-2 text-sm leading-7 text-slate-600">
-                  Replace these demo images with your real EMC, safety, reliability, and analysis laboratory photos.
-                </p>
               </div>
             </div>
             <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-              <img
-                src="https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=900&q=80"
-                alt="EMC equipment"
-                className="h-48 w-full object-cover"
-              />
+              <img src="/images/homepage/3m anechoic Room(Radiated immunity).jpg" alt="EMC equipment" className="h-48 w-full object-cover" />
               <div className="p-4">
-                <div className="font-semibold text-slate-900">EMC Resources</div>
-                <div className="mt-1 text-sm text-slate-600">Use real chamber, receiver, and test setup images here.</div>
+                <div className="font-semibold text-slate-900">3m Anechoic Room (Radiated Immunity)</div>
               </div>
             </div>
             <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-              <img
-                src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=900&q=80"
-                alt="Reliability and safety"
-                className="h-48 w-full object-cover"
-              />
+              <img src="/images/homepage/Harmonic current and Voltage flicker test ROOM.jpg" alt="Harmonic current and Voltage flicker test room" className="h-48 w-full object-cover" />
               <div className="p-4">
-                <div className="font-semibold text-slate-900">Verification Support</div>
-                <div className="mt-1 text-sm text-slate-600">Show how engineering and lab resources work together.</div>
+                <div className="font-semibold text-slate-900">Harmonic Current & Voltage Flicker Test Room</div>
               </div>
             </div>
           </div>
@@ -548,18 +473,10 @@ export default function GeesyTechWebsite() {
 
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <SectionTitle
-            title="About Geesy Tech"
-            desc="Geesy Tech focuses on EMC troubleshooting, testing support, and compliance-oriented engineering assistance. Our strength lies in helping customers solve real EMC problems efficiently, especially in home appliances, power tools, and power supply systems, with a strong focus on industrial power applications."
-          />
+          <SectionTitle title="About Linkon Tech" desc="Linkon Tech focuses on EMC troubleshooting, testing support, and compliance-oriented engineering assistance. Our strength lies in helping customers solve real EMC problems efficiently, especially in home appliances, power tools, and power supply systems, with a strong focus on industrial power applications." />
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {strengths.map((item) => (
-              <button
-                key={`${item.title}-${item.desc}`}
-                type="button"
-                onClick={() => goToPage(item.key)}
-                className="rounded-3xl border border-slate-200 bg-slate-50 p-8 text-left shadow-sm transition hover:-translate-y-1 hover:border-slate-300"
-              >
+              <button key={`${item.title}-${item.desc}`} type="button" onClick={() => goTo(item.path)} className="rounded-3xl border border-slate-200 bg-slate-50 p-8 text-left shadow-sm transition hover:-translate-y-1 hover:border-slate-300">
                 <div className="mb-4 h-1 w-12 rounded-full bg-amber-500" />
                 <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
                 <p className="mt-4 text-base leading-7 text-slate-600">{item.desc}</p>
@@ -572,20 +489,11 @@ export default function GeesyTechWebsite() {
 
       <section className="border-b border-slate-200 bg-slate-50">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <SectionTitle
-            title="Services"
-            desc="Open each service page to see the detailed capability description together with supporting laboratory images. Laboratory content is integrated into service pages, not separated into an isolated tab."
-          />
+          <SectionTitle title="Services" desc="Open each service page to see the detailed capability description together with supporting laboratory images. Laboratory content is integrated into service pages, not separated into an isolated tab." />
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {serviceMenuItems.map((item) => (
-              <button
-                key={item.key}
-                type="button"
-                onClick={() => goToPage(item.key)}
-                className="rounded-3xl border border-slate-200 bg-white p-8 text-left shadow-sm transition hover:-translate-y-1 hover:border-slate-300"
-              >
+              <button key={item.key} type="button" onClick={() => goTo(item.path)} className="rounded-3xl border border-slate-200 bg-white p-8 text-left shadow-sm transition hover:-translate-y-1 hover:border-slate-300">
                 <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
-                <p className="mt-4 text-base leading-7 text-slate-600">{item.desc}</p>
                 <div className="mt-6 text-sm font-semibold text-blue-900">Open page →</div>
               </button>
             ))}
@@ -595,21 +503,11 @@ export default function GeesyTechWebsite() {
 
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <SectionTitle
-            title="Industries"
-            desc="We have stronger practical experience in home appliances, power tools, and power supply systems, especially industrial power applications where EMC issues tend to be more complex."
-          />
+          <SectionTitle title="Industries" desc="We have stronger practical experience in home appliances, power tools, and power supply systems, especially industrial power applications where EMC issues tend to be more complex." />
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {industryMenuItems.map((item, index) => (
-              <button
-                key={item.key}
-                type="button"
-                onClick={() => goToPage(item.key)}
-                className={`rounded-3xl border p-8 text-left shadow-sm transition hover:-translate-y-1 ${index === 2 ? "border-blue-900 bg-blue-900 text-white" : "border-slate-200 bg-slate-50"
-                  }`}
-              >
+              <button key={item.key} type="button" onClick={() => goTo(item.path)} className={`rounded-3xl border p-8 text-left shadow-sm transition hover:-translate-y-1 ${index === 2 ? "border-blue-900 bg-blue-900 text-white" : "border-slate-200 bg-slate-50"}`}>
                 <h3 className={`text-xl font-semibold ${index === 2 ? "text-white" : "text-slate-900"}`}>{item.title}</h3>
-                <p className={`mt-4 text-base leading-7 ${index === 2 ? "text-blue-100" : "text-slate-600"}`}>{item.desc}</p>
                 <div className={`mt-6 text-sm font-semibold ${index === 2 ? "text-white" : "text-blue-900"}`}>Open page →</div>
               </button>
             ))}
@@ -619,10 +517,7 @@ export default function GeesyTechWebsite() {
 
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <SectionTitle
-            title="FAQ"
-            desc="The website message stays practical and engineering-focused, so customers can quickly understand where your real strength is."
-          />
+          <SectionTitle title="FAQ" desc="The website message stays practical and engineering-focused, so customers can quickly understand where your real strength is." />
           <div className="mt-12 space-y-4">
             {faqs.map((item) => (
               <details key={item.q} className="group rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
@@ -638,108 +533,102 @@ export default function GeesyTechWebsite() {
     </>
   );
 
-  const renderServicePage = (data) => (
-    <>
-      <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
-          <button type="button" onClick={() => goToPage("home")} className="mb-8 text-sm font-semibold text-blue-900 transition hover:opacity-80">← Back to Home</button>
-          <div className="max-w-4xl">
-            <div className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm">{data.heroTag}</div>
-            <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{data.title}</h1>
-            <p className="mt-6 text-lg leading-8 text-slate-600">{data.subtitle}</p>
+  const ServicePage = ({ data }) => (
+    <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
+      <SideNav title="Services" items={serviceMenuItems} />
+      <div className="min-w-0 flex-1">
+        <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
+          <div className="px-0 py-10">
+            <div className="max-w-4xl">
+              <div className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm">{data.heroTag}</div>
+              <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{data.title}</h1>
+              <p className="mt-6 text-lg leading-8 text-slate-600">{data.subtitle}</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[1fr_1.2fr] lg:px-8">
-          <div><SectionTitle title="Service Overview" desc={data.intro} /></div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {data.highlights.map((item) => (
-              <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm font-medium text-slate-700 shadow-sm">{item}</div>
-            ))}
+        <section className="border-b border-slate-200 bg-white">
+          <div className="py-20">
+            <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr]">
+              <div><SectionTitle title="Service Overview" desc={data.intro} /></div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {data.highlights.map((item) => (
+                  <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm font-medium text-slate-700 shadow-sm">{item}</div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="border-b border-slate-200 bg-slate-50">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <SectionTitle
-            title="Laboratory Support Within This Service"
-            desc="Instead of separating laboratory information into an independent generic tab, this page shows the images and resources that directly support the service itself. Replace the demo images with your real laboratory photos."
-          />
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {data.gallery.map((item) => (
-              <div key={item.title} className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-                <img src={item.image} alt={item.title} className="h-60 w-full object-cover transition duration-500 hover:scale-105" />
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{item.desc}</p>
+        <section className="border-b border-slate-200 bg-slate-50">
+          <div className="py-20">
+            <SectionTitle title="Laboratory Support Within This Service" desc="Instead of separating laboratory information into an independent generic tab, this page shows the images and resources that directly support the service itself. Replace the demo images with your real laboratory photos." />
+            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+              {data.gallery.map((item) => (
+                <div key={item.title} className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+                  <img src={item.image} alt={item.title} className="h-60 w-full object-cover transition duration-500 hover:scale-105" />
+                  <div className="p-6">
+                    <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">{item.desc}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <SectionTitle
-            title="Support Scope"
-            desc="This service is positioned as practical engineering support combined with verification capability, so the site should present clear working scope rather than empty marketing claims."
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {data.scope.map((item) => (
-              <div key={item} className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
-                <div className="text-base font-semibold text-slate-900">{item}</div>
-              </div>
-            ))}
+        <section className="border-b border-slate-200 bg-white">
+          <div className="py-20">
+            <SectionTitle title="Support Scope" desc="This service is positioned as practical engineering support combined with verification capability, so the site should present clear working scope rather than empty marketing claims." />
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              {data.scope.map((item) => (
+                <div key={item} className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+                  <div className="text-base font-semibold text-slate-900">{item}</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <ContactSection />
-    </>
+        </div>
+    </div>
   );
 
-  const renderIndustryPage = (data) => (
+  const IndustryPage = ({ data }) => (
+    <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
+      <SideNav title="Industries" items={industryMenuItems} />
+      <div className="min-w-0 flex-1">
+        <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
+          <div className="px-0 py-10">
+            <div className="max-w-4xl">
+              <div className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm">{data.heroTag}</div>
+              <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{data.title}</h1>
+              <p className="mt-6 text-lg leading-8 text-slate-600">{data.intro}</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-slate-200 bg-white">
+          <div className="py-20">
+            <SectionTitle title="Typical Experience Areas" desc="This industry page should help visitors understand where your practical EMC experience is concentrated, especially when they are looking for a team familiar with their product category." />
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              {data.points.map((item) => (
+                <div key={item} className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+                  <div className="text-base font-semibold text-slate-900">{item}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        </div>
+    </div>
+  );
+
+  const AboutPage = () => (
     <>
       <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
-          <button type="button" onClick={() => goToPage("home")} className="mb-8 text-sm font-semibold text-blue-900 transition hover:opacity-80">← Back to Home</button>
-          <div className="max-w-4xl">
-            <div className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm">{data.heroTag}</div>
-            <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{data.title}</h1>
-            <p className="mt-6 text-lg leading-8 text-slate-600">{data.intro}</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <SectionTitle
-            title="Typical Experience Areas"
-            desc="This industry page should help visitors understand where your practical EMC experience is concentrated, especially when they are looking for a team familiar with their product category."
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {data.points.map((item) => (
-              <div key={item} className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
-                <div className="text-base font-semibold text-slate-900">{item}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <ContactSection />
-    </>
-  );
-
-  const renderAboutPage = () => (
-    <>
-      <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
-          <button type="button" onClick={() => goToPage("home")} className="mb-8 text-sm font-semibold text-blue-900 transition hover:opacity-80">← Back to Home</button>
           <div className="max-w-4xl">
             <div className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm">{aboutPage.heroTag}</div>
             <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{aboutPage.title}</h1>
@@ -750,10 +639,7 @@ export default function GeesyTechWebsite() {
 
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <SectionTitle
-            title="Core Strengths"
-            desc="About is now a single complete page so visitors can understand your support model more clearly in one place."
-          />
+          <SectionTitle title="Core Strengths" desc="About is now a single complete page so visitors can understand your support model more clearly in one place." />
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {aboutPage.sections.map((item) => (
               <div key={item.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
@@ -769,16 +655,15 @@ export default function GeesyTechWebsite() {
     </>
   );
 
-  const renderContactPage = () => (
+  const ContactPage = () => (
     <>
       <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
-          <button type="button" onClick={() => goToPage("home")} className="mb-8 text-sm font-semibold text-blue-900 transition hover:opacity-80">← Back to Home</button>
           <div className="max-w-4xl">
             <div className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm">Contact</div>
             <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">Let’s Discuss Your EMC Project</h1>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              Contact Geesy Tech if you need EMC troubleshooting, testing support, or compliance-oriented engineering assistance for your project.
+              Contact Linkon Tech if you need EMC troubleshooting, testing support, or compliance-oriented engineering assistance for your project.
             </p>
           </div>
         </div>
@@ -791,25 +676,20 @@ export default function GeesyTechWebsite() {
     <div className="min-h-screen bg-white text-slate-800">
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-          <button type="button" onClick={() => goToPage("home")} className="text-left">
-            <div className="text-2xl font-bold tracking-tight text-slate-900">Geesy Tech</div>
+          <button type="button" onClick={() => goTo("/")} className="text-left">
+            <div className="text-2xl font-bold tracking-tight text-slate-900">Linkon Tech</div>
             <div className="text-xs uppercase tracking-[0.25em] text-slate-500">EMC Troubleshooting & Testing</div>
           </button>
 
           <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
-            <button type="button" onClick={() => goToPage("home")} className="text-slate-600 transition hover:text-slate-900">Home</button>
-            <button type="button" onClick={() => goToPage("about")} className="text-slate-600 transition hover:text-slate-900">About</button>
+            <button type="button" onClick={() => goTo("/")} className="text-slate-600 transition hover:text-slate-900">Home</button>
+            <button type="button" onClick={() => goTo("/about")} className="text-slate-600 transition hover:text-slate-900">About</button>
             <DropdownMenu label="Services" menuKey="services" items={serviceMenuItems} />
             <DropdownMenu label="Industries" menuKey="industries" items={industryMenuItems} />
-            <button type="button" onClick={() => goToPage("contact")} className="text-slate-600 transition hover:text-slate-900">Contact</button>
+            <button type="button" onClick={() => goTo("/contact")} className="text-slate-600 transition hover:text-slate-900">Contact</button>
           </nav>
 
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700 md:hidden"
-            aria-label="Toggle navigation"
-          >
+          <button type="button" onClick={() => setMobileMenuOpen((prev) => !prev)} className="inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700 md:hidden" aria-label="Toggle navigation">
             <span className="text-lg">☰</span>
           </button>
         </div>
@@ -818,27 +698,18 @@ export default function GeesyTechWebsite() {
           <div className="border-t border-slate-200 bg-white md:hidden">
             <div className="mx-auto max-w-7xl px-6 py-4">
               <div className="space-y-2 text-sm font-medium text-slate-700">
-                <button type="button" onClick={() => goToPage("home")} className="block w-full rounded-lg px-3 py-3 text-left hover:bg-slate-50">Home</button>
-                <button type="button" onClick={() => goToPage("about")} className="block w-full rounded-lg px-3 py-3 text-left hover:bg-slate-50">About</button>
+                <button type="button" onClick={() => goTo("/")} className="block w-full rounded-lg px-3 py-3 text-left hover:bg-slate-50">Home</button>
+                <button type="button" onClick={() => goTo("/about")} className="block w-full rounded-lg px-3 py-3 text-left hover:bg-slate-50">About</button>
 
                 <div className="rounded-lg border border-slate-200">
-                  <button
-                    type="button"
-                    onClick={() => setMobileServicesOpen((prev) => !prev)}
-                    className="flex w-full items-center justify-between px-3 py-3 text-left"
-                  >
+                  <button type="button" onClick={() => setMobileServicesOpen((prev) => !prev)} className="flex w-full items-center justify-between px-3 py-3 text-left">
                     <span>Services</span>
                     <span>{mobileServicesOpen ? "−" : "+"}</span>
                   </button>
                   {mobileServicesOpen && (
                     <div className="border-t border-slate-200 px-2 py-2">
                       {serviceMenuItems.map((item) => (
-                        <button
-                          key={item.key}
-                          type="button"
-                          onClick={() => goToPage(item.key)}
-                          className="block w-full rounded-lg px-3 py-3 text-left text-slate-600 hover:bg-slate-50"
-                        >
+                        <button key={item.key} type="button" onClick={() => goTo(item.path)} className="block w-full rounded-lg px-3 py-3 text-left text-slate-600 hover:bg-slate-50">
                           {item.title}
                         </button>
                       ))}
@@ -847,23 +718,14 @@ export default function GeesyTechWebsite() {
                 </div>
 
                 <div className="rounded-lg border border-slate-200">
-                  <button
-                    type="button"
-                    onClick={() => setMobileIndustriesOpen((prev) => !prev)}
-                    className="flex w-full items-center justify-between px-3 py-3 text-left"
-                  >
+                  <button type="button" onClick={() => setMobileIndustriesOpen((prev) => !prev)} className="flex w-full items-center justify-between px-3 py-3 text-left">
                     <span>Industries</span>
                     <span>{mobileIndustriesOpen ? "−" : "+"}</span>
                   </button>
                   {mobileIndustriesOpen && (
                     <div className="border-t border-slate-200 px-2 py-2">
                       {industryMenuItems.map((item) => (
-                        <button
-                          key={item.key}
-                          type="button"
-                          onClick={() => goToPage(item.key)}
-                          className="block w-full rounded-lg px-3 py-3 text-left text-slate-600 hover:bg-slate-50"
-                        >
+                        <button key={item.key} type="button" onClick={() => goTo(item.path)} className="block w-full rounded-lg px-3 py-3 text-left text-slate-600 hover:bg-slate-50">
                           {item.title}
                         </button>
                       ))}
@@ -871,7 +733,7 @@ export default function GeesyTechWebsite() {
                   )}
                 </div>
 
-                <button type="button" onClick={() => goToPage("contact")} className="block w-full rounded-lg px-3 py-3 text-left hover:bg-slate-50">Contact</button>
+                <button type="button" onClick={() => goTo("/contact")} className="block w-full rounded-lg px-3 py-3 text-left hover:bg-slate-50">Contact</button>
               </div>
             </div>
           </div>
@@ -879,12 +741,27 @@ export default function GeesyTechWebsite() {
       </header>
 
       <main>
-        {page === "home" && renderHome()}
-        {currentService && renderServicePage(currentService)}
-        {currentIndustry && renderIndustryPage(currentIndustry)}
-        {showAbout && renderAboutPage()}
-        {showContact && renderContactPage()}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path={servicePages.emcTroubleshooting.path} element={<ServicePage data={servicePages.emcTroubleshooting} />} />
+          <Route path={servicePages.emcTesting.path} element={<ServicePage data={servicePages.emcTesting} />} />
+          <Route path={servicePages.complianceSupport.path} element={<ServicePage data={servicePages.complianceSupport} />} />
+          <Route path={industryPages.homeAppliances.path} element={<IndustryPage data={industryPages.homeAppliances} />} />
+          <Route path={industryPages.powerTools.path} element={<IndustryPage data={industryPages.powerTools} />} />
+          <Route path={industryPages.powerSupplySystems.path} element={<IndustryPage data={industryPages.powerSupplySystems} />} />
+          <Route path={industryPages.automotive.path} element={<IndustryPage data={industryPages.automotive} />} />
+        </Routes>
       </main>
     </div>
+  );
+}
+
+export default function LinkonTechWebsite() {
+  return (
+    <BrowserRouter>
+      <LinkonTechWebsiteInner />
+    </BrowserRouter>
   );
 }
