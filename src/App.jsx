@@ -188,51 +188,66 @@ function LinkonTechWebsiteInner() {
       heroTag: "Industry / Home Appliances",
       title: "Home Appliances",
       intro:
-        "We have solid EMC experience in household electrical products and smart home related applications, including products with control boards, switching circuits, and motor-driven structures.",
+        "We support EMC troubleshooting and testing for household appliances and smart home products, especially where switching power circuits, control boards, and motor systems create recurring EMC challenges.",
+      sectionTitle: "Typical EMC Concerns",
+      sectionDesc:
+        "Typical EMC concerns in this sector include conducted emission from switching power supplies, radiated noise from motor-driven systems, and immunity issues in control boards and user-interface circuits.",
       points: [
-        "Appliance control systems",
-        "Kitchen electrical products",
-        "Smart home devices",
-        "Noise and interference troubleshooting for household products",
+        "Control boards and user interfaces",
+        "Switching power supply noise",
+        "Motor-driven appliance systems",
+        "Immunity issues in smart home products",
       ],
     },
+
     powerTools: {
       path: "/industries/power-tools",
       heroTag: "Industry / Power Tools",
       title: "Power Tools",
       intro:
         "We support EMC troubleshooting and testing for motor-driven power tools, where switching noise, structural interference, and system-level EMC risks are often more prominent.",
+      sectionTitle: "Typical EMC Concerns",
+      sectionDesc:
+        "Typical EMC concerns in this sector include radiated noise from brushed or brushless motors, switching interference from driver circuits, cable-related emissions, and repeated failures during immunity verification.",
       points: [
         "Motor-driven products",
-        "Switching noise control",
-        "System-level EMC optimization",
+        "Switching noise from driver circuits",
+        "Cable and structural emissions",
         "Rectification support for repeated failures",
       ],
     },
+
     powerSupplySystems: {
       path: "/industries/power-supply-systems",
       heroTag: "Industry / Power Supply Systems",
       title: "Power Supply Systems",
       intro:
-        "Power supply systems are one of our strongest areas, especially industrial power applications with higher EMC complexity, stronger conducted and radiated emissions, and tighter project schedules.",
+        "We have strong EMC experience in power supply systems, especially industrial power applications where conducted emission, radiated interference, and compliance schedules are more demanding.",
+      sectionTitle: "Typical EMC Concerns",
+      sectionDesc:
+        "Typical EMC concerns in this sector include conducted emission from high-frequency switching stages, radiated noise from transformers and power loops, surge and EFT vulnerability, and repeated redesign cycles before compliance approval.",
       points: [
-        "Industrial power supplies",
-        "Switching power designs",
-        "High-power conducted emission troubleshooting",
-        "Radiated emission optimization for industrial applications",
+        "Industrial switching power supplies",
+        "Conducted emission optimization",
+        "Radiated noise from power loops",
+        "Surge and EFT improvement support",
       ],
     },
+
     automotive: {
       path: "/industries/automotive",
       heroTag: "Industry / Automotive",
       title: "Automotive",
       intro:
-        "We can also support EMC-related engineering work for automotive electronics and vehicle-adjacent systems, especially where reliability, noise control, and compliance expectations are stricter.",
+        "We can support EMC-related engineering work for automotive electronics and vehicle-adjacent systems, especially where reliability requirements, noise control, and compliance expectations are stricter.",
+      sectionTitle: "Typical EMC Concerns",
+      sectionDesc:
+        "Typical EMC concerns in this sector include noise coupling in power and signal lines, transient immunity, interference between control modules, and validation demands under stricter reliability and compliance conditions.",
       points: [
         "Automotive electronic modules",
-        "On-board power and control systems",
-        "Noise suppression for vehicle-related applications",
-        "Engineering support for higher-reliability EMC projects",
+        "Power and signal line interference",
+        "Transient and immunity support",
+        "Higher-reliability EMC validation",
       ],
     },
   };
@@ -707,36 +722,126 @@ function LinkonTechWebsiteInner() {
     </div>
   );
 
-  const IndustryPage = ({ data }) => (
-    <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
-      <SideNav title="Industries" items={industryMenuItems} />
-      <div className="min-w-0 flex-1">
-        <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
-          <div className="px-0 py-10">
-            <div className="max-w-4xl">
-              <div className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm">{data.heroTag}</div>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{data.title}</h1>
-              <p className="mt-6 text-lg leading-8 text-slate-600">{data.intro}</p>
-            </div>
-          </div>
-        </section>
+  const IndustryPage = ({ data }) => {
+    const industryImages = {
+      "Home Appliances": [
+        {
+          src: "/images/industries/homeappliance1.jpg",
+          alt: "Home appliance EMC testing setup",
+          caption: "Typical EMC setup for household appliance testing",
+        },
+        {
+          src: "/images/industries/homeappliance2.jpg",
+          alt: "Motor-driven appliance EMC verification",
+          caption: "Motor-driven system EMC verification",
+        },
+      ],
+      "Power Tools": [
+        {
+          src: "/images/industries/powertool3.jpg",
+          alt: "Power tool EMC testing setup",
+          caption: "Typical EMC setup for motor-driven power tools",
+        },
+        {
+          src: "/images/industries/powertool2.jpg",
+          alt: "Power tool driver and interference verification",
+          caption: "Driver circuit and switching noise verification",
+        },
+      ],
+      "Power Supply Systems": [
+        {
+          src: "/images/industries/powersupply1.jpg",
+          alt: "Industrial power supply EMC testing",
+          caption: "Industrial power supply EMC testing environment",
+        },
+        {
+          src: "/images/industries/powersupply2.jpg",
+          alt: "Switching power supply verification",
+          caption: "Switching power supply verification and troubleshooting",
+        },
+      ],
+      Automotive: [
+        {
+          src: "/images/industries/automotive1.jpg",
+          alt: "Automotive electronics EMC testing",
+          caption: "Automotive electronics EMC evaluation setup",
+        },
+        {
+          src: "/images/industries/automotive2.jpg",
+          alt: "Vehicle electronics validation",
+          caption: "Vehicle-related electronics validation support",
+        },
+      ],
+    };
 
-        <section className="border-b border-slate-200 bg-white">
-          <div className="py-20">
-            <SectionTitle title="Typical Experience Areas" desc="This industry page should help visitors understand where your practical EMC experience is concentrated, especially when they are looking for a team familiar with their product category." />
-            <div className="mt-12 grid gap-6 md:grid-cols-2">
-              {data.points.map((item) => (
-                <div key={item} className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
-                  <div className="text-base font-semibold text-slate-900">{item}</div>
+    const images = industryImages[data.title] || [];
+
+    return (
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
+        <SideNav title="Industries" items={industryMenuItems} />
+
+        <div className="min-w-0 flex-1">
+          <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
+            <div className="px-0 py-10">
+              <div className="max-w-4xl">
+                <div className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-sm">
+                  {data.heroTag}
                 </div>
-              ))}
+                <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                  {data.title}
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-slate-600">
+                  {data.intro}
+                </p>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
+          <section className="border-b border-slate-200 bg-white">
+            <div className="py-20">
+              <SectionTitle
+                title={data.sectionTitle}
+                desc={data.sectionDesc}
+              />
+
+              {images.length > 0 && (
+                <div className="mt-12 grid gap-6 md:grid-cols-2">
+                  {images.map((image) => (
+                    <div
+                      key={image.src}
+                      className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-sm"
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="h-64 w-full object-cover"
+                      />
+                      <div className="p-4 text-sm leading-6 text-slate-600">
+                        {image.caption}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="mt-12 grid gap-6 md:grid-cols-2">
+                {data.points.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm"
+                  >
+                    <div className="text-base font-semibold text-slate-900">
+                      {item}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const AboutPage = () => (
     <>
