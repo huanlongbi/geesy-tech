@@ -546,8 +546,20 @@ function LinkonTechWebsiteInner() {
           body: new URLSearchParams(formData).toString(),
         });
 
+        if (window.gtag) {
+          window.gtag("event", "generate_lead", {
+            event_category: "Contact",
+            event_label: "Form Submission",
+            form_name: "contact",
+            page_path: window.location.pathname,
+          });
+          console.log("GA generate_lead sent");
+        } else {
+          console.log("gtag not found");
+        }
+
         form.reset();
-        navigate("/thank-you"); // 👉 成功后跳转
+        navigate("/thank-you");
       } catch (error) {
         console.error("Form submission failed:", error);
         alert("Submission failed. Please try again.");
@@ -1193,15 +1205,6 @@ function LinkonTechWebsiteInner() {
   const ThankYouPage = () => {
     const navigate = useNavigate();
 
-    // 🔥 这里就是关键：提交成功后触发 GA 转化
-    useEffect(() => {
-      if (window.gtag) {
-        window.gtag("event", "generate_lead", {
-          event_category: "Contact",
-          event_label: "Form Submission",
-        });
-      }
-    }, []);
 
     return (
       <>
