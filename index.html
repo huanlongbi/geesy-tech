@@ -59,7 +59,7 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
-  <form name="contact" method="POST" data-netlify="true" hidden>
+  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
     <input type="hidden" name="form-name" value="contact" />
     <input name="name" />
     <input name="company" />
@@ -67,6 +67,7 @@
     <input name="service" />
     <textarea name="message"></textarea>
     <input name="consent" />
+    <input name="bot-field" />
   </form>
 </body>
 
