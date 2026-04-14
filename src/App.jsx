@@ -608,7 +608,7 @@ function LinkonTechWebsiteInner() {
                 <div className="mb-4 h-1 w-12 rounded-full bg-amber-500" />
                 <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
                 <p className="mt-4 text-base leading-7 text-slate-600">{item.desc}</p>
-                <div className="mt-6 text-sm font-semibold text-blue-900">Open page →</div>
+
               </button>
             ))}
           </div>
@@ -622,7 +622,7 @@ function LinkonTechWebsiteInner() {
             {serviceMenuItems.map((item) => (
               <button key={item.key} type="button" onClick={() => goTo(item.path)} className="rounded-3xl border border-slate-200 bg-white p-8 text-left shadow-sm transition hover:-translate-y-1 hover:border-slate-300">
                 <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
-                <div className="mt-6 text-sm font-semibold text-blue-900">Open page →</div>
+
               </button>
             ))}
           </div>
@@ -636,7 +636,7 @@ function LinkonTechWebsiteInner() {
             {industryMenuItems.map((item, index) => (
               <button key={item.key} type="button" onClick={() => goTo(item.path)} className={`rounded-3xl border p-8 text-left shadow-sm transition hover:-translate-y-1 ${index === 2 ? "border-blue-900 bg-blue-900 text-white" : "border-slate-200 bg-slate-50"}`}>
                 <h3 className={`text-xl font-semibold ${index === 2 ? "text-white" : "text-slate-900"}`}>{item.title}</h3>
-                <div className={`mt-6 text-sm font-semibold ${index === 2 ? "text-white" : "text-blue-900"}`}>Open page →</div>
+
               </button>
             ))}
           </div>
