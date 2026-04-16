@@ -12,6 +12,9 @@ import {
 const blogPosts = [
   {
     slug: "emc-test-failure",
+    seoTitle: "Why Products Fail EMC Tests | Linkon Tech",
+    seoDescription:
+      "Learn the most common causes of EMC test failure, including conducted emission, radiated emission, PCB layout, grounding, and immunity problems.",
     title: "Why Your Product Fails EMC Test (And How to Fix It Fast)",
     desc: "A practical engineering view of common EMC failure mechanisms and faster debug priorities.",
     image: "/images/blog/emc-test-failure.jpg",
@@ -85,6 +88,9 @@ The fastest way to fix EMC is not random rectification. It is identifying the do
   },
   {
     slug: "emi-filter-design",
+    seoTitle: "EMI Filter Design Mistakes That Cause Compliance Failure | Linkon Tech",
+    seoDescription:
+      "Discover common EMI filter design mistakes related to common-mode noise, differential-mode noise, filter layout, return path, and component selection.",
     title: "EMI Filter Design Mistakes That Cause Compliance Failure",
     desc: "Common filter-design errors in switched power systems and how they affect conducted emission results.",
     image: "/images/blog/emi-filter-design.jpg",
@@ -230,6 +236,9 @@ function LinkonTechWebsiteInner() {
       path: "/services/emc-troubleshooting",
       heroTag: "Service / EMC Troubleshooting",
       title: "EMC Troubleshooting",
+      seoTitle: "EMC Troubleshooting Services | Linkon Tech",
+      seoDescription:
+        "Professional EMC troubleshooting support for EMI issues, failed EMC tests, PCB layout problems, grounding, shielding, and filter optimization.",
       subtitle:
         "Engineering-focused support to identify EMC problems, analyze root causes, and provide practical rectification suggestions for faster compliance.",
       intro:
@@ -273,6 +282,9 @@ function LinkonTechWebsiteInner() {
       path: "/services/emc-testing",
       heroTag: "Service / EMC Testing",
       title: "EMC Testing",
+      seoTitle: "EMC Testing Services | Linkon Tech",
+      seoDescription:
+        "EMC testing support including radiated emission, conducted emission, ESD, EFT, surge, and pre-compliance verification.",
       subtitle:
         "EMC testing support for debugging, validation, and pre-compliance work, backed by laboratory resources and fast execution.",
       intro:
@@ -316,6 +328,9 @@ function LinkonTechWebsiteInner() {
       path: "/services/compliance-support",
       heroTag: "Service / Compliance Support",
       title: "Compliance Support",
+      seoTitle: "CE, FCC & EMC Compliance Support | Linkon Tech",
+      seoDescription:
+        "Technical compliance support for CE, FCC, EMC testing, certification preparation, and product improvement before formal testing.",
       subtitle:
         "Technical support for product improvement, validation, and preparation for compliance requirements in target markets.",
       intro:
@@ -361,6 +376,9 @@ function LinkonTechWebsiteInner() {
     homeAppliances: {
       path: "/industries/home-appliances",
       heroTag: "Industry / Home Appliances",
+      seoTitle: "Home Appliance EMC Solutions | Linkon Tech",
+      seoDescription:
+        "EMC troubleshooting and testing support for home appliances, smart home products, motor systems, and switching power supplies.",
       title: "Home Appliances",
       intro:
         "We support EMC troubleshooting and testing for household appliances and smart home products, especially where switching power circuits, control boards, and motor systems create recurring EMC challenges.",
@@ -378,6 +396,9 @@ function LinkonTechWebsiteInner() {
     powerTools: {
       path: "/industries/power-tools",
       heroTag: "Industry / Power Tools",
+      seoTitle: "Power Tool EMC Solutions | Linkon Tech",
+      seoDescription:
+        "EMC testing and troubleshooting for motor-driven power tools, driver circuits, switching noise, and cable-related emissions.",
       title: "Power Tools",
       intro:
         "We support EMC troubleshooting and testing for motor-driven power tools, where switching noise, structural interference, and system-level EMC risks are often more prominent.",
@@ -395,6 +416,9 @@ function LinkonTechWebsiteInner() {
     powerSupplySystems: {
       path: "/industries/power-supply-systems",
       heroTag: "Industry / Power Supply Systems",
+      seoTitle: "Industrial Power Supply EMC Solutions | Linkon Tech",
+      seoDescription:
+        "EMC troubleshooting and testing support for industrial power supplies, switching converters, conducted emission, surge, and EFT issues.",
       title: "Power Supply Systems",
       intro:
         "We have strong EMC experience in power supply systems, especially industrial power applications where conducted emission, radiated interference, and compliance schedules are more demanding.",
@@ -412,6 +436,9 @@ function LinkonTechWebsiteInner() {
     automotive: {
       path: "/industries/automotive",
       heroTag: "Industry / Automotive",
+      seoTitle: "Automotive EMC Solutions | Linkon Tech",
+      seoDescription:
+        "EMC engineering support for automotive electronics, vehicle-related systems, transient immunity, and higher-reliability EMC validation.",
       title: "Automotive",
       intro:
         "We can support EMC-related engineering work for automotive electronics and vehicle-adjacent systems, especially where reliability requirements, noise control, and compliance expectations are stricter.",
@@ -554,6 +581,17 @@ function LinkonTechWebsiteInner() {
               <div>
                 <span className="font-semibold text-white">Email:</span>{" "}
                 Robin@linkontech.net
+              </div>
+              <div>
+                <span className="font-semibold text-white">WhatsApp:</span>{" "}
+                <a
+                  href="https://wa.me/8613800138000"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-white"
+                >
+                  +86 138 0013 8000
+                </a>
               </div>
               <div>
                 <span className="font-semibold text-white">Address:</span>{" "}
@@ -716,10 +754,10 @@ function LinkonTechWebsiteInner() {
   const HomePage = () => (
     <>
       <Helmet>
-        <title>EMC Troubleshooting & EMI Fix | Linkon Tech</title>
+        <title>EMC Troubleshooting, EMI Debugging & EMC Testing | Linkon Tech</title>
         <meta
           name="description"
-          content="Professional EMC troubleshooting and EMI debugging services to help your product pass CE/FCC certification faster."
+          content="Professional EMC troubleshooting, EMI debugging, EMC testing, and CE/FCC compliance support for industrial power supplies, home appliances, and electronic products."
         />
       </Helmet>
       <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
@@ -830,10 +868,10 @@ function LinkonTechWebsiteInner() {
   const ServicePage = ({ data }) => (
     <>
       <Helmet>
-        <title>{`${data.title} | Linkon Tech`}</title>
+        <title>{data.seoTitle || `${data.title} | Linkon Tech`}</title>
         <meta
           name="description"
-          content={data.intro}
+          content={data.seoDescription || data.intro}
         />
       </Helmet>
 
@@ -987,13 +1025,12 @@ function LinkonTechWebsiteInner() {
     return (
       <>
         <Helmet>
-          <title>{`${data.title} EMC Solutions | Linkon Tech`}</title>
+          <title>{data.seoTitle || `${data.title} EMC Solutions | Linkon Tech`}</title>
           <meta
             name="description"
-            content={data.sectionDesc}
+            content={data.seoDescription || data.sectionDesc}
           />
         </Helmet>
-
         <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
           <SideNav title="Industries" items={industryMenuItems} />
 
@@ -1064,10 +1101,11 @@ function LinkonTechWebsiteInner() {
   const AboutPage = () => (
     <>
       <Helmet>
-        <title>About Linkon Tech | EMC Engineering Support</title>
+        <title>About Linkon Tech | EMC Engineering Support & Testing Resources</title>
+
         <meta
           name="description"
-          content="Learn about Linkon Tech’s EMC engineering experience, laboratory resources, and technical capabilities."
+          content="Learn about Linkon Tech’s EMC engineering experience, laboratory resources, troubleshooting capability, and support for industrial power supplies, home appliances, and electronic products."
         />
       </Helmet>
       <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
@@ -1149,10 +1187,12 @@ function LinkonTechWebsiteInner() {
   const ContactPage = () => (
     <>
       <Helmet>
-        <title>Contact Us | Linkon Tech</title>
+
+        <title>Contact Linkon Tech | EMC Troubleshooting & Testing Support</title>
+
         <meta
           name="description"
-          content="Contact Linkon Tech for EMC troubleshooting, EMI debugging, and compliance support."
+          content="Contact Linkon Tech for EMC troubleshooting, EMI debugging, EMC testing, and CE/FCC compliance support for your project."
         />
       </Helmet>
       <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
@@ -1237,10 +1277,11 @@ function LinkonTechWebsiteInner() {
     return (
       <>
         <Helmet>
-          <title>EMC Blog | Linkon Tech</title>
+          <title>EMC Blog | EMC Troubleshooting, EMI Design & Compliance Insights</title>
+
           <meta
             name="description"
-            content="EMC troubleshooting insights, EMI solutions, and compliance tips from Linkon Tech."
+            content="Read practical EMC troubleshooting notes, EMI filter design tips, compliance guidance, and EMC testing insights from Linkon Tech."
           />
         </Helmet>
 
@@ -1328,8 +1369,11 @@ function LinkonTechWebsiteInner() {
     return (
       <>
         <Helmet>
-          <title>{`${post.title} | Linkon Tech`}</title>
-          <meta name="description" content={post.desc} />
+          <title>{post.seoTitle || `${post.title} | Linkon Tech`}</title>
+          <meta
+            name="description"
+            content={post.seoDescription || post.desc}
+          />
         </Helmet>
 
         <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
