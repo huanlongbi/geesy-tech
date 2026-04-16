@@ -585,7 +585,7 @@ function LinkonTechWebsiteInner() {
               <div>
                 <span className="font-semibold text-white">WhatsApp:</span>{" "}
                 <a
-                  href="https://wa.me/8613800138000"
+                  href="https://wa.me/8618923763022"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:text-white"
