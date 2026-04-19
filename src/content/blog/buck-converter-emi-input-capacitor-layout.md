@@ -4,7 +4,7 @@ title: How Input Capacitor Placement Affects Buck Converter EMI
 seoTitle: How Input Capacitor Placement Affects Buck Converter EMI | Linkon Tech
 seoDescription: Learn how input capacitor placement affects EMI, ringing, common-mode current, and PCB layout performance in buck converters.
 desc: A practical EMC case study showing how input capacitor placement affects ringing and EMI in a buck converter.
-image: /images/blog/buck-converter-emi-2.png
+image: /images/blog/buck-converter-emi-front.jpg
 publishedAt: 2026-04-17
 author: Linkon Tech
 ---
