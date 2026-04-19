@@ -565,25 +565,28 @@ function LinkonTechWebsiteInner() {
   };
 
   const SideNav = ({ title, items }) => (
-    <aside className="lg:w-64 shrink-0">
-      <div className="sticky top-24 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <div className="mb-4 text-sm font-semibold uppercase tracking-[0.15em] text-slate-500">{title}</div>
-        <div className="space-y-2">
-          {items.map((item) => {
-            const active = location.pathname === item.path;
-            return (
-              <Link
-                key={item.key}
-                to={item.path}
-                className={`block rounded-xl px-4 py-3 text-sm font-medium transition ${active ? "bg-blue-900 text-white" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"}`}
-              >
-                {item.title}
-              </Link>
-            );
-          })}
-        </div>
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="mb-4 text-sm font-semibold uppercase tracking-[0.15em] text-slate-500">
+        {title}
       </div>
-    </aside>
+      <div className="space-y-2">
+        {items.map((item) => {
+          const active = location.pathname === item.path;
+          return (
+            <Link
+              key={item.key}
+              to={item.path}
+              className={`block rounded-xl px-4 py-3 text-sm font-medium transition ${active
+                ? "bg-blue-900 text-white"
+                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                }`}
+            >
+              {item.title}
+            </Link>
+          );
+        })}
+      </div>
+    </div>
   );
 
   const HomePage = () => (
@@ -765,7 +768,13 @@ function LinkonTechWebsiteInner() {
       </Helmet>
 
       <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
-        <SideNav title="Services" items={serviceMenuItems} />
+        <aside className="lg:w-64 shrink-0">
+          <div className="sticky top-24 space-y-6">
+            <SideNav title="Services" items={serviceMenuItems} />
+            <SideNav title="Blog" items={blogMenuItems.slice(1, 4)} />
+          </div>
+        </aside>
+
         <div className="min-w-0 flex-1">
           <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
             <div className="px-0 py-10">
@@ -921,7 +930,12 @@ function LinkonTechWebsiteInner() {
           />
         </Helmet>
         <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
-          <SideNav title="Industries" items={industryMenuItems} />
+          <aside className="lg:w-64 shrink-0">
+            <div className="sticky top-24 space-y-6">
+              <SideNav title="Industries" items={industryMenuItems} />
+              <SideNav title="Blog" items={blogMenuItems.slice(1, 4)} />
+            </div>
+          </aside>
 
           <div className="min-w-0 flex-1">
             <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
@@ -1175,7 +1189,11 @@ function LinkonTechWebsiteInner() {
         </Helmet>
 
         <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
-          <SideNav title="Blog" items={blogMenuItems} />
+          <aside className="lg:w-64 shrink-0">
+            <div className="sticky top-24">
+              <SideNav title="Blog" items={blogMenuItems} />
+            </div>
+          </aside>
 
           <div className="min-w-0 flex-1">
             <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
@@ -1208,10 +1226,10 @@ function LinkonTechWebsiteInner() {
                         src={post.image}
                         alt={post.title}
                         className={`h-56 w-full ${post.cardImageFit === "contain"
-                            ? "object-contain bg-slate-50"
-                            : post.cardImageFit === "top"
-                              ? "object-cover object-top"
-                              : "object-cover"
+                          ? "object-contain bg-slate-50"
+                          : post.cardImageFit === "top"
+                            ? "object-cover object-top"
+                            : "object-cover"
                           }`}
                       />
                       <div className="p-8">
@@ -1276,7 +1294,11 @@ function LinkonTechWebsiteInner() {
         </Helmet>
 
         <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
-          <SideNav title="Blog" items={blogMenuItems} />
+          <aside className="lg:w-64 shrink-0">
+            <div className="sticky top-24">
+              <SideNav title="Blog" items={blogMenuItems} />
+            </div>
+          </aside>
 
           <div className="min-w-0 flex-1">
             <section className="border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
