@@ -682,6 +682,60 @@ function LinkonTechWebsiteInner() {
         </div>
       </section>
 
+      <section className="border-b border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+          <SectionTitle
+            title="Technical Articles"
+            desc="Selected EMC troubleshooting notes, EMI case studies, and practical design insights."
+          />
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {blogPosts.slice(0, 3).map((post) => (
+              <button
+                key={post.slug}
+                type="button"
+                onClick={() => goTo(`/blog/${post.slug}`)}
+                className="overflow-hidden rounded-3xl border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:border-slate-300"
+              >
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="h-52 w-full object-cover"
+                />
+
+                <div className="p-6">
+                  <p className="text-sm font-medium text-slate-500">
+                    {post.publishedAt}
+                  </p>
+
+                  <h3 className="mt-2 text-xl font-semibold text-slate-900">
+                    {post.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                    {post.desc}
+                  </p>
+
+                  <div className="mt-5 text-sm font-semibold text-blue-900">
+                    Read More  →
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-10">
+            <button
+              type="button"
+              onClick={() => goTo("/blog")}
+              className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
+            >
+              View Technical Articles
+            </button>
+          </div>
+        </div>
+      </section>
+
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <SectionTitle title="FAQ" desc="The website message stays practical and engineering-focused, so customers can quickly understand where your real strength is." />
