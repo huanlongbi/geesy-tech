@@ -168,12 +168,13 @@ The optimized PCB layout is shown below.
 With the optimized C_IN placement, the overshoot on the single-layer PCB disappeared completely.
 
 The radiated noise measured by the loop antenna became very low, and the FFT result was close to the noise floor.
+![Final optimized result](/images/blog/buck-converter-emi-14.png)
 
 When the common-mode current on the input cable was measured again, the difference at some frequencies exceeded 30 dB, showing that the original noise problem had been greatly reduced.
 
 The final result is shown in the figure below.
 
-![Final optimized result](/images/blog/buck-converter-emi-14.png)
+![Final optimized result](/images/blog/buck-converter-emi-15.png)
 
 ## Conclusion
 
