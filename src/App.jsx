@@ -1207,7 +1207,12 @@ function LinkonTechWebsiteInner() {
                       <img
                         src={post.image}
                         alt={post.title}
-                        className="h-56 w-full object-cover"
+                        className={`h-56 w-full ${post.cardImageFit === "contain"
+                            ? "object-contain bg-slate-50"
+                            : post.cardImageFit === "top"
+                              ? "object-cover object-top"
+                              : "object-cover"
+                          }`}
                       />
                       <div className="p-8">
                         {/* 发布时间 */}
@@ -1299,11 +1304,11 @@ function LinkonTechWebsiteInner() {
 
             <section className="bg-white">
               <div className="py-20">
-                <div className="overflow-hidden rounded-3xl border border-slate-200 shadow-sm">
+                <div className="overflow-hidden rounded-3xl border border-slate-200 shadow-sm bg-slate-50">
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="h-[420px] w-full object-cover"
+                    className={`h-[420px] w-full ${post.imageFit === "contain" ? "object-contain" : "object-cover object-top"}`}
                   />
                 </div>
 

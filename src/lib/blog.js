@@ -53,6 +53,8 @@ function normalizePost(filePath, raw) {
     seoDescription: data.seoDescription || data.desc || "",
     desc: data.desc || "",
     image: data.image || "",
+    imageFit: data.imageFit || "cover",
+    cardImageFit: data.cardImageFit || "cover",
     publishedAt: data.publishedAt || "",
     author: data.author || "Linkon Tech",
     content,
