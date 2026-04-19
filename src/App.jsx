@@ -328,8 +328,13 @@ function LinkonTechWebsiteInner() {
   ];
   const strengths = [
     { path: "/about", title: "Experienced EMC Engineers", desc: "We focus on practical rectification support, not just pass/fail reporting." },
-    { path: "/about", title: "Laboratory Resource Support", desc: "Testing and verification resources help confirm improvement effectiveness quickly." },
+    { path: "/about", title: "Lab Verification Support", desc: "Testing and verification resources help confirm EMC improvements more quickly." },
     { path: "/about", title: "Fast Turnaround", desc: "Efficient execution helps customers shorten delays and accelerate product launch timing." },
+    {
+      path: "/about",
+      title: "Efficient Project Support",
+      desc: "Flexible engineering support designed to reduce repeated testing cycles and overall project cost.",
+    },
   ];
 
   const faqs = [
@@ -636,7 +641,7 @@ function LinkonTechWebsiteInner() {
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <SectionTitle title="About Linkon Tech" desc="Linkon Tech focuses on EMC troubleshooting, testing support, and compliance-oriented engineering assistance. Our strength lies in helping customers solve real EMC problems efficiently, especially in home appliances, power tools, and power supply systems, with a strong focus on industrial power applications." />
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
             {strengths.map((item) => (
               <button key={`${item.title}-${item.desc}`} type="button" onClick={() => goTo(item.path)} className="rounded-3xl border border-slate-200 bg-slate-50 p-8 text-left shadow-sm transition hover:-translate-y-1 hover:border-slate-300">
                 <div className="mb-4 h-1 w-12 rounded-full bg-amber-500" />
