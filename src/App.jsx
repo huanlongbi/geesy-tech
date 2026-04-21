@@ -597,6 +597,7 @@ function LinkonTechWebsiteInner() {
           name="description"
           content="Professional EMC troubleshooting, EMI debugging, EMC testing, and CE/FCC compliance support for industrial power supplies, home appliances, and electronic products."
         />
+        <link rel="canonical" href="https://www.linkontech.net/" />
       </Helmet>
       <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-br from-white via-slate-50 to-slate-100">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(30,58,138,0.08),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(199,154,43,0.10),transparent_28%)]" />
@@ -765,6 +766,10 @@ function LinkonTechWebsiteInner() {
           name="description"
           content={data.seoDescription || data.intro}
         />
+        <link
+          rel="canonical"
+          href={`https://www.linkontech.net${data.path}`}
+        />
       </Helmet>
 
       <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
@@ -927,6 +932,10 @@ function LinkonTechWebsiteInner() {
           <meta
             name="description"
             content={data.seoDescription || data.sectionDesc}
+          />
+          <link
+            rel="canonical"
+            href={`https://www.linkontech.net${data.path}`}
           />
         </Helmet>
         <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
@@ -1181,11 +1190,11 @@ function LinkonTechWebsiteInner() {
       <>
         <Helmet>
           <title>EMC Blog | EMC Troubleshooting, EMI Design & Compliance Insights</title>
-
           <meta
             name="description"
             content="Read practical EMC troubleshooting notes, EMI filter design tips, compliance guidance, and EMC testing insights from Linkon Tech."
           />
+          <link rel="canonical" href="https://www.linkontech.net/blog" />
         </Helmet>
 
         <div className="mx-auto max-w-7xl px-6 py-16 lg:flex lg:gap-12 lg:px-8">
@@ -1290,6 +1299,10 @@ function LinkonTechWebsiteInner() {
           <meta
             name="description"
             content={post.seoDescription || post.desc}
+          />
+          <link
+            rel="canonical"
+            href={`https://www.linkontech.net/blog/${slug}`}
           />
         </Helmet>
 
